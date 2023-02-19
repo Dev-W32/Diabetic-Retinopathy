@@ -1,0 +1,208 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | DR</title>
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+  </head>
+  <body>
+    
+    <section class="header">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-0" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+        <nav>
+            <a href="/"><img src="static\logo2.png" alt=""></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" aria-hidden="true" onclick="hideMenu()"></i>
+
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="#aboutdr">ABOUT</a></li>
+                    <li><a href="#cta">DETECT</a></li>
+                    <li><a href="#footer">CONTACT US</a></li>
+                    <li><a class="hero-btn" href="" data-bs-toggle="modal" data-bs-target="#loginModal" style="padding:6px 24px">LOGIN</a></li>
+                    <li><a class="hero-btn" href="" data-bs-toggle="modal" data-bs-target="#SignupModal" style="padding:6px 24px">SIGNUP</a></li>
+                    
+                </ul>
+            </div>
+            <i class="fa fa-bars" aria-hidden="true" onclick="showMenu()"></i>
+            
+        </nav>
+        
+        <div class="text-box">
+            <h1>Diabetic Retinopathy Detection</h1>
+            <p>This is a Web Application designed to classify the stages of diabetic retinopathy (DR) <br> and predict the probability of its occurrence in the patient's retina.</p>
+            <a href="#aboutdr" class="hero-btn" style="color:white">Know more</a>
+        </div>
+    </section>
+
+
+
+    <!-- Button trigger modal -->
+{% comment %} <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> {% endcomment %}
+  
+  <!-- Modal -->
+  <div class="modal fade" id="SignupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">SignUp To Detect Reports</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/signup" method="post">
+
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username < 15 char and must be alphanumeric" required>
+            </div>
+            <div class="mb-3">
+              <label for="fname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter First Name" required>
+              </div>
+              <div class="mb-3">
+                <label for="lname" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email ID" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Contact number" required>
+              </div>
+              <div class="mb-3">
+                <label for="pass1" class="form-label">Choose a Password</label>
+                <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Enter a Password" required>
+              </div>
+              <div class="mb-3">
+                <label for="pass2" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Re-enter the Password" required>
+              </div>
+        </div>
+        {% csrf_token %}
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">SignUp</button>
+        </div>
+      </form>
+      </div>
+    
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Login To Detect Reports</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/login" method="post">
+
+            <div class="mb-3">
+              <label for="loginusername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Enter Your Username">
+            </div>
+            
+            <div class="mb-3">
+              <label for="loginpass" class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="Enter Your Password">
+            </div>
+            
+          </div>
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <section class="aboutdr" id="aboutdr">
+        <h1>About Diabetic Retinopathy</h1>
+        <p>Diabetic retinopathy is the leading cause of blindness in the working-age population of the developed world. It is estimated to affect over 93 million people.</p>
+        <p>The US Center for Disease Control and Prevention estimates that 29.1 million people in the US have diabetes and the World Health Organization estimates that 347 million people have the disease worldwide. Diabetic Retinopathy (DR) is an eye disease associated with long-standing diabetes. Around 40% to 45% of Americans with diabetes have some stage of the disease. Progression to vision impairment can be slowed or averted if DR is detected in time, however this can be difficult as the disease often shows few symptoms until it is too late to provide effective treatment.</p>
+        <p>Currently, detecting DR is a time-consuming and manual process that requires a trained clinician to examine and evaluate digital color fundus photographs of the retina. By the time human readers submit their reviews, often a day or two later, the delayed results lead to lost follow up, miscommunication, and delayed treatment.</p>
+        <p>Clinicians can identify DR by the presence of lesions associated with the vascular abnormalities caused by the disease. While this approach is effective, its resource demands are high. The expertise and equipment required are often lacking in areas where the rate of diabetes in local populations is high and DR detection is most needed. As the number of individuals with diabetes continues to grow, the infrastructure needed to prevent blindness due to DR will become even more insufficient.</p>
+        <p>The output of the result is classified into five types(0-4). They are <br>0 - No DR<br>
+            1 - Mild <br>
+            2 - Moderate <br>
+            3 - Severe <br>
+            4 - Proliferative DR</p>
+    </section>
+    
+
+
+
+    <section class="cta" id="cta">
+        <h1>Detect your stage of Diabetic Retinopathy <br> by One Click!</h1>
+        <a href="/login" class="hero-btn" style="color:white" data-bs-toggle="modal" data-bs-target="#loginModal">Login to Proceed</a>
+    </section>
+
+
+
+
+    <section class="footer" id="footer">
+        <h4>Contact us</h4>
+        <p>For any queries: <br> Email: s.akashdurga@gmail.com <br> LinkedIn: www.linkedin.com/in/akashdurgasiliveru <br> <br>  Developed by Siliveru Akash Durga</p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+        </div>
+    </section>
+
+
+    {% comment %} Javascript for toggle menu {% endcomment %}
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu(){
+            navLinks.style.right="0";
+        }
+
+        function hideMenu(){
+            navLinks.style.right="-250px";
+        }
+    </script>
+
+    {% comment %} <script>
+        let section=document.querySelectorAll('section');
+        let navLinks=document.querySelectorAll('header nav a');
+        window.onscroll=()=>{
+            section.forEach(sec=>{
+                let top=window.scrollY;
+                let offset=sec.offsetTop;
+                let height=sec.offsetHeight;
+                let id=sec.getAttribute('id');
+                if(top>= offset && top<offset+height){
+                    navLinks.forEach(links=>{
+                        links.classList.remove('active');
+                        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                    });
+                };
+            });
+        };
+    </script> {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  </body>
+</html>
