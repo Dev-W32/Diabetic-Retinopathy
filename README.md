@@ -44,3 +44,11 @@ Database:
 
 ![Screenshot (414)](https://user-images.githubusercontent.com/92878802/219941854-192902d0-8f9e-4d5f-9e3e-fb7ff2c304c9.png)
 
+Train accuracy:
+
+![Screenshot 2023-02-19 155919](https://user-images.githubusercontent.com/92878802/219942500-d77669bd-ef24-4487-bcf8-2b972dc254d7.png)
+
+Test accuracy:
+
+![Screenshot 2023-02-19 155826](https://user-images.githubusercontent.com/92878802/219942516-95160703-2959-434f-8acc-86d823d94cad.png)
+
