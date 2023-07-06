@@ -1,8 +1,3 @@
-# Diabetic Retinopathy
-This is a Web Application designed to classify the stages of Diabetic Retinopathy (DR) and predict the stage of DR in patient's retina using MobileNetV2 model, Django(Python web framework), SqLite(database), etc.
-To know more about the project, download the Diabetic Retinopathy Project Report.pdf file.
-To view the project video demonstration, download the video from the file Diabetic Retinopathy Video Demonstration.mp4 file.
-
 # Project Sample:
 Home Page:
 

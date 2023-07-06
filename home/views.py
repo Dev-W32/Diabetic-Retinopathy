@@ -3,7 +3,6 @@ from home.models import Detect
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate,get_user_model
 from django.contrib import messages
-from twilio.rest import Client
 from django.core.files.storage import FileSystemStorage
 
 import tensorflow as tf
@@ -19,17 +18,6 @@ model = tf.keras.models.load_model((path),custom_objects={'KerasLayer':hub.Keras
 def index(request):
     return render(request,'index.html')
 def detect(request):
-    # if request.method=="POST":
-    #     name=request.POST.get('name')
-    #     age=request.POST.get('age')
-    #     gender=request.POST.get('gender')
-    #     email=request.POST.get('email')
-    #     phone=request.POST.get('phone')
-        
-    #     right_eye=request.FILES['right_eye']
-    #     left_eye=request.FILES['left_eye']
-    #     obj=Detect(name=name,age=age,gender=gender,email=email,phone=phone,right_eye=right_eye,left_eye=left_eye)
-    #     obj.save()
     return render(request,'detect.html')
 
 def handleLogin(request):
@@ -110,19 +98,6 @@ def handleSignup(request):
         newuser.save()
         messages.success(request,"New User Created")
 
-
-        account_sid = 'AC994597ea4d7158eda939da3d36ee3b44'
-        auth_token ='407e8ea6b437ef8247470373970a3ffd'
-        client = Client(account_sid, auth_token)
-
-        message = client.messages.create(
-                    body=f"Thank you {fname} For Signing in to DR detection.\nYour Username: {username}",
-                    from_='+18647744450',
-                    to='+91'+phone
-                    
-                )
-
-        print(message.sid)
         return redirect('/')
 
 

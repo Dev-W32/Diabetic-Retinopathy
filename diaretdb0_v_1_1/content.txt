@@ -1,0 +1,15 @@
+#Content of the CD:
+
+doc/                                                    #Documenatation of the reference image database for diabetic retinopathy:
+resources/                                              #Resources related to the database:
+resources/evalscript/                                   #MATLAB evaluation script for DiaRetdb0
+resources/example_evalresults/                          #Ouput files of example algorithm described in documentation
+resources/traindatasets/                                #Train data for consistent method evaluation
+resources/testdatasets/                                 #Test data for consistent method evaluation
+resources/images/                                       #Database images
+resources/html/                                         #Html data for diaretdb0.htm
+resources/html/html_images/thumbnails                   #Thumbnail images for diaretdb0.htm
+resources/images/diaretdb0_groundtruths/                #Groundtruth files for diaredb0 fundus images
+resources/images/diaretdb0_binary_masks/                #Diaredb0 binary masks for training/testing
+resources/images/diaretdb0_fundus_images/ 		#Diaretdb0 color fundus images 
+resources/images/example_images/                        #Findings of the screening method and grountruth marked for some of the screening images
